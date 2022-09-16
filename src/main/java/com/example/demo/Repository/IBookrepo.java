@@ -10,8 +10,13 @@ import com.example.demo.Entity.Book;
 
 public interface IBookrepo extends JpaRepository<Book, Long> {
 
-	 public List<Book>  findByCategory(String category);
-	 	 
+	 public List<Book>  findByCatagory(String category);
+	 public List<Book>  findByPrice(Double price);
+     public List<Book> findByPublisher(String publisher);	 
+	 public List<Book> findAll();
+	 public List<Book> findByAuthor(String author);
+ List<Book> findByCatagoryAndAuthorAndPriceAndPublisher(String catagory, String author, Double price, String publisher);
+	 
 	
 
 

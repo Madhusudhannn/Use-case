@@ -15,7 +15,13 @@ public class Book {
 	private String title;
 	private String publisher;
 	private String releaseDate;
-	private String category;
+	private String catagory;
+	public String getCatagory() {
+		return catagory;
+	}
+	public void setCatagory(String catagory) {
+		this.catagory = catagory;
+	}
 	private Double price;
 	private boolean active;
 	private String content;
@@ -49,12 +55,7 @@ public class Book {
 	public void setReleaseDate(String releaseDate) {
 		this.releaseDate = releaseDate;
 	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
+	
 	public Double getPrice() {
 		return price;
 	}

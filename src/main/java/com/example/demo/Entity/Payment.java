@@ -12,7 +12,14 @@ public class Payment {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long paymentId;
 	private Long bookID;
-	private Long price;
+	private Integer price;
+	private String email;
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	private String paymentDate;
 	public Long getPaymentId() {
 		return paymentId;
@@ -26,10 +33,11 @@ public class Payment {
 	public void setBookID(Long bookID) {
 		this.bookID = bookID;
 	}
-	public Long getPrice() {
+	
+	public Integer getPrice() {
 		return price;
 	}
-	public void setPrice(Long price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 	public String getPaymentDate() {
