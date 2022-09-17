@@ -11,9 +11,17 @@ public class Payment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long paymentId;
+	private Long readerId;
 	private Long bookID;
 	private Integer price;
 	private String email;
+	
+	public Long getReaderId() {
+		return readerId;
+	}
+	public void setReaderId(Long readerId) {
+		this.readerId = readerId;
+	}
 	public String getEmail() {
 		return email;
 	}

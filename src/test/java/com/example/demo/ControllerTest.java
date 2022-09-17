@@ -26,6 +26,7 @@ public class ControllerTest {
 	{
 		User user =new User();
 		user.setEmail("madhu@123");
+		
 	}
 
 }
