@@ -5,8 +5,8 @@ public class BookResponse {
 	private String author;
 	private String title;
 	private String publisher;
-	private String releaseDate;
-	private String category;
+	private String releaseDate;  
+	private String category; 
 	private Long price;
 	private boolean active;
 	private String content;

@@ -1,13 +1,13 @@
 package com.example.demo.request;
 
 
-public class LoginRequest {
+public class LoginRequest { 
 	private String username;
 
 	
-	private String password;
+	private String password; 
 
-	public String getUsername() {
+	public String getUsername() { 
 		return username;
 	}
 

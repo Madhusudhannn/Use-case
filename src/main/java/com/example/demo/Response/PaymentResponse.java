@@ -6,13 +6,13 @@ public class PaymentResponse {
 	private Long bookID;
 	private Long price;
 	private String paymentDate;
-	public Long getPaymentId() {
-		return paymentId;
+	public Long getPaymentId() { 
+		return paymentId; 
 	}
 	public void setPaymentId(Long paymentId) {
 		this.paymentId = paymentId;
 	}
-	public Long getBookID() {
+	public Long getBookID() { 
 		return bookID;
 	}
 	public void setBookID(Long bookID) {

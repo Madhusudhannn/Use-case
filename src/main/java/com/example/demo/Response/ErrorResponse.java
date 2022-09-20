@@ -4,9 +4,9 @@ public class ErrorResponse {
 	
 	private String errocode;
 	private String description;
-	private Exception exception;
-	public String getErrocode() {
-		return errocode;
+	private Exception exception; 
+	public String getErrocode() { 
+		return errocode; 
 	}
 	public void setErrocode(String errocode) {
 		this.errocode = errocode;

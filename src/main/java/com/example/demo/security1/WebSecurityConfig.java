@@ -20,7 +20,7 @@ import com.example.demo.Services.UserDetailsServiceImpl;
 
 
 
-@Configuration
+@Configuration   
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
 		prePostEnabled = true)

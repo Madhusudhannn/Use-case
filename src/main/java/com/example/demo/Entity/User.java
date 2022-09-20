@@ -8,7 +8,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@Entity
+@Entity 
 @Table(	name = "users", 
 		uniqueConstraints = { 
 			@UniqueConstraint(columnNames = "username"),
@@ -45,14 +45,14 @@ public class User {
 		this.username = username;
 		this.email = email;
 		this.password = password;
-	} 
+	}  
 
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this.id = id; 
 	}
 
 	public String getUsername() {

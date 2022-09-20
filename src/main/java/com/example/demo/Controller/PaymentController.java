@@ -24,8 +24,8 @@ import com.example.demo.Services.Paymentservice;
 @RestController
 @RequestMapping("/api/auth")
 public class PaymentController {
-	
-	@Autowired
+	  
+	@Autowired 
 	private Paymentservice paymentservice;
 	
 	@PreAuthorize("hasRole('ROLE_READER')")

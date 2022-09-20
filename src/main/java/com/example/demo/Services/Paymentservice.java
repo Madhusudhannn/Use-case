@@ -16,8 +16,8 @@ import com.example.demo.Repository.Ipaymentrepo;
 import com.example.demo.Repository.UserRepository;
 
 @Service
-public class Paymentservice {
-	
+public class Paymentservice {  
+	 
 	@Autowired
 	private Ipaymentrepo paymentrepo;
 	@Autowired

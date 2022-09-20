@@ -19,8 +19,8 @@ import io.jsonwebtoken.UnsupportedJwtException;
 
 
 
-@Component
-public class JwtUtils {
+@Component  
+public class JwtUtils { 
 	private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
 	@Value("${bezkoder.app.jwtSecret}")

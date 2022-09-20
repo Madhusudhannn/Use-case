@@ -38,7 +38,7 @@ import com.example.demo.request.SignupRequest;
 @RestController
 @RequestMapping("/api/auth") 
 public class AuthController {
-	@Autowired
+	@Autowired 
 	AuthenticationManager authenticationManager;
 
 	@Autowired
@@ -108,7 +108,7 @@ public class AuthController {
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 					roles.add(adminRole);
 
-					break;
+					break;  
 				
 				default:
 					Role userRole = roleRepository.findByName(ERole.ROLE_READER)
@@ -121,7 +121,7 @@ public class AuthController {
 		user.setRoles(roles);
 		userRepository.save(user); 
  
-		return ResponseEntity.ok(new MessageResponse("Author registered successfully!"));
+		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 		
 	}
 }

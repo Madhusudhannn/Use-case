@@ -7,11 +7,10 @@ import javax.persistence.Id;
 
 @Entity
 public class Payment {
-	
+	  
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long paymentId;
-	private Long readerId;
+	private Long readerId; 
 	private Long bookID;
 	private Integer price;
 	private String email;

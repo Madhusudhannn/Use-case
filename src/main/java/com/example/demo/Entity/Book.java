@@ -8,14 +8,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Book {
+public class Book {  
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long bookID;
 	private String author;
 	private String title;
-	private String publisher;
+	private String publisher; 
 	private String releaseDate;
 	private String catagory;
 	public String getCatagory() {

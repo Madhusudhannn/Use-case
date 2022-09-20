@@ -8,6 +8,7 @@
 		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	
 	<groupId>com.example</groupId>
 	<artifactId>Digital_Books</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -31,6 +32,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		
+		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -52,6 +54,8 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+	
+		
 	</dependencies>
 
 	<build>

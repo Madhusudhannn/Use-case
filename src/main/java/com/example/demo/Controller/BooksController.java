@@ -26,9 +26,9 @@ import com.example.demo.Services.Paymentservice;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 @RestController
-@RequestMapping("/api/auth")
-public class BooksController {
-	
+@RequestMapping("/api/auth") 
+public class BooksController {  
+	 
 	@Autowired
 	private BookService bookservice;
 	
@@ -92,7 +92,7 @@ public class BooksController {
 		return bookservice.price(price);
 				
 	}
-	@PreAuthorize("hasRole('ROLE_AUTHOR')")
+	@PreAuthorize("hasRole('ROLE_READER')")
 
 	@GetMapping("/getallbooks")
 	public List<Book> allbooks()

@@ -11,8 +11,8 @@ import com.example.demo.Entity.Book;
 import com.example.demo.Repository.IBookrepo;
 
 @Service
-public class BookService {
-
+public class BookService { 
+  
 	@Autowired
 	private IBookrepo bookrepo;
 	
