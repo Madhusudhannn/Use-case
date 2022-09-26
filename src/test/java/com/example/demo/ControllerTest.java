@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -27,12 +28,12 @@ public class ControllerTest {
 	  
 	
 	
-	@Autowired
-	private BookService bookservtest;
+	@Mock
+	private BookService bookservice;
 	@Autowired
 	private IBookrepo bookrepo;
 	
-	@MockBean 
+	@InjectMocks
 	private BooksController bookcontroller;
 	
 	@Test 
@@ -45,15 +46,18 @@ public class ControllerTest {
 		book.setPublisher("publisher"); 
 		book.setTitle("title");
 		book.setReleaseDate("1910-11-10");
-		Mockito.when(bookcontroller.newbook(book)).thenReturn(null);
-		assertThat(bookservtest.savebook(book));
+		Mockito.when(bookservice.savebook(book)).thenReturn(book);
+		String savebook=bookcontroller.newbook(book);
+		assertThat(savebook.equals("Book is created succefully"));
 	} 
     @Test
     public void getallbookstest()
     {
     	List<Book> book=new ArrayList<>();
-    	when(bookrepo.findAll()).thenReturn(book);
-    	assertThat(bookcontroller.allbooks());
+    	when(bookservice.allbooks()).thenReturn(book);
+    	List<Book> result=bookcontroller.allbooks();
+    	assertThat(result).isNotNull();
+    	assertEquals(0, book.size());
     } 
 	@Test
 	public void searchbytest() 
@@ -61,7 +65,7 @@ public class ControllerTest {
 		Book book=new Book();
 		book.setAuthor("author");
 		when(bookcontroller.searchbooksbyauthor("author")).thenReturn(null);
-		assertThat(bookservtest.byauthor("author"));
+		assertThat(bookservice.byauthor("author"));
 		 
 	}
 	@Test
@@ -70,7 +74,7 @@ public class ControllerTest {
 		Book book=new Book();
 		book.setBookID(1L);
 		when(bookcontroller.readbookbyid(1L)).thenReturn(null);
-		assertThat(bookservtest.byid(1L));
+		assertThat(bookservice.byid(1L));
 	} 
 	@Test
 	public void searchbycatpriceauthpublic() throws JsonProcessingException
@@ -81,7 +85,7 @@ public class ControllerTest {
 		book.setPrice(150.00);
 		book.setPublisher("publisher");
 		when(bookcontroller.SearchBooks("catagory", "author", 150.00, "publisher")).thenReturn(null);
-		assertThat(bookservtest.findByCatagoryAndAuthorAndPriceAndPublisher("catagory", "author", 150.00, "publisher"));
+		assertThat(bookservice.findByCatagoryAndAuthorAndPriceAndPublisher("catagory", "author", 150.00, "publisher"));
 	}
 	@Test
 	public void searchbycategorytest()
@@ -89,7 +93,7 @@ public class ControllerTest {
 		Book book=new Book();
 		book.setCatagory("category");
 		when(bookcontroller.searchbooks("catagory")).thenReturn(null);
-		assertThat(bookservtest.getbycategory("catagory"));
+		assertThat(bookservice.getbycategory("catagory"));
 	}
 	@Test
 	public void updatetest()
@@ -97,7 +101,7 @@ public class ControllerTest {
 		Book book=new Book();
 		book.setBookID(2L);
 		when(bookcontroller.updatebook(book, 2L)).thenReturn(book);
-		assertThat(bookservtest.updateBookService(book));
+		assertThat(bookservice.updateBookService(book));
 		 
 	} 
   

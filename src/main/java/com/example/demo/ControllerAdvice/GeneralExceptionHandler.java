@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.example.demo.Response.ErrorResponse;
 
-@RestControllerAdvice
+@RestControllerAdvice 
 public class GeneralExceptionHandler { 
 	
 	@ResponseStatus(HttpStatus.UNAUTHORIZED)

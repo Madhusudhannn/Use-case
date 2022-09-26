@@ -153,10 +153,7 @@ public class BooksController {
 
 	       Boolean isReaderPurchased = bookservice.isPaymentAvailableByReaderId(user.getId());
 	        if (isReaderPurchased) {
-
-
-
-	       }
+             }
 
 
 
@@ -193,7 +190,7 @@ public class BooksController {
 	       return responseEntity;
 	    }
 	   @PreAuthorize("hasRole('ROLE_READER')")
-	    @GetMapping("/readers/{email}/books/paymentId/{paymentId}")
+	    @GetMapping("/readers/{email}/paymentId/{paymentId}")
 	    @ResponseBody
 	    public ResponseEntity getBookByPaymentid(@PathVariable("email") String email,
 	            @PathVariable("paymentId") String paymentId) throws JsonProcessingException {
