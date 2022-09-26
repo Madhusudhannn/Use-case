@@ -91,6 +91,15 @@ public class ControllerTest {
 		when(bookcontroller.searchbooks("catagory")).thenReturn(null);
 		assertThat(bookservtest.getbycategory("catagory"));
 	}
+	@Test
+	public void updatetest()
+	{
+		Book book=new Book();
+		book.setBookID(2L);
+		when(bookcontroller.updatebook(book, 2L)).thenReturn(book);
+		assertThat(bookservtest.updateBookService(book));
+		 
+	} 
   
 	
 } 

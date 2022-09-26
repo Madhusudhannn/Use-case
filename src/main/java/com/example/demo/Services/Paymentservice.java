@@ -48,6 +48,11 @@ public class Paymentservice {
 		map.put("bookID", bookIdList);
 		return map;
 	}
+	public Payment bypaymentId(Long paymentId) {
+		
+		return paymentrepo.findByPaymentId(paymentId);
+	}
+	
 	
 	
 

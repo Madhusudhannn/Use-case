@@ -53,6 +53,14 @@ public class PaymentController {
 		
 		return responseEntity;
 	}
+	@PreAuthorize("hasRole('ROLE_READER')")
+
+	@GetMapping("purchasedbookbyid/{paymentId}")
+	public Payment purchasedbookbyid(@PathVariable("paymentId") Long paymentId)
+	{
+		return paymentservice.bypaymentId(paymentId);
+	}
+	
 	
 	
 
