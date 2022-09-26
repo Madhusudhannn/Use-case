@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Entity.Book;
+import com.example.demo.Entity.User;
 import com.example.demo.Repository.IBookrepo;
 import com.example.demo.Services.BookService;
 import com.example.demo.Services.Paymentservice;
@@ -134,6 +136,82 @@ public class BooksController {
 	     return	bookservice.byid(bookid);
 	    }
 	    
+	    @PreAuthorize("hasRole('ROLE_READER')")
+	    @GetMapping("/allPurchasedBooks/{email}")
+	    @ResponseBody
+	    public ResponseEntity findAllPurchasedBooks(@PathVariable("email") String email) {
+
+
+
+	       Optional<User> optional = bookservice.getByEmail(email);
+
+
+
+	       User user = optional.get();
+
+
+
+	       Boolean isReaderPurchased = bookservice.isPaymentAvailableByReaderId(user.getId());
+	        if (isReaderPurchased) {
+
+
+
+	       }
+
+
+
+	       Map<String, Set<Long>> bookList = bookservice.getBookId(user.getId());
+
+
+
+	       ResponseEntity responseEntity = new ResponseEntity(bookList, HttpStatus.OK);
+
+
+
+	       return responseEntity;
+	    }
+
+
+
+	   @PreAuthorize("hasRole('ROLE_READER')")
+	    @GetMapping("/readers/{email}/books/{bookId}")
+	    @ResponseBody
+	    public ResponseEntity readBooks(@PathVariable("email") String email, @PathVariable("bookId") String bookId)
+	            throws JsonProcessingException {
+
+
+
+	       Long bookId1 = Long.parseLong(bookId);
+	        Map<String, String> mapString = bookservice.readContent(email, bookId1);
+
+
+
+	       ResponseEntity responseEntity = new ResponseEntity(mapString, HttpStatus.OK);
+
+
+
+	       return responseEntity;
+	    }
+	   @PreAuthorize("hasRole('ROLE_READER')")
+	    @GetMapping("/readers/{email}/books/paymentId/{paymentId}")
+	    @ResponseBody
+	    public ResponseEntity getBookByPaymentid(@PathVariable("email") String email,
+	            @PathVariable("paymentId") String paymentId) throws JsonProcessingException {
+
+
+
+	       Long payemntid = Long.parseLong(paymentId);
+	        Map<String, String> mapString = bookservice.findBookByPaymentId(email, payemntid);
+
+
+
+	       ResponseEntity responseEntity = new ResponseEntity(mapString, HttpStatus.OK);
+
+
+
+	       return responseEntity;
+	    }
+	
 
 	    
 	
