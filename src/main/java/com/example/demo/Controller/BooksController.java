@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +27,7 @@ import com.example.demo.Repository.IBookrepo;
 import com.example.demo.Services.BookService;
 import com.example.demo.Services.Paymentservice;
 import com.fasterxml.jackson.core.JsonProcessingException;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/auth") 
 public class BooksController {  
@@ -91,7 +92,7 @@ public class BooksController {
 	@GetMapping("/searchbook/{price}")
 	public List<Book> searchbooksby(@PathVariable Double price)
 	{
-		return bookservice.price(price);
+		return bookservice.price(price); 
 				
 	}
 	@PreAuthorize("hasRole('ROLE_READER')")
@@ -118,7 +119,7 @@ public class BooksController {
             Map<String,String>result = new HashMap<>();
             BooksList.forEach(Book->{
                 result.put("author",Book.getAuthor());
-                result.put("catagory",Book.getCatagory());
+                result.put("catagory",Book.getCatagory()); 
                 result.put("publishedDate",Book.getReleaseDate());
                 result.put("publisher",Book.getPublisher());
                 result.put("title",Book.getTitle());

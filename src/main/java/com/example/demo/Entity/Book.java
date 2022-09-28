@@ -18,15 +18,17 @@ public class Book {
 	private String publisher; 
 	private String releaseDate;
 	private String catagory;
+	
+	private Double price;
+	private boolean active;
+	private String content;
+	
 	public String getCatagory() {
 		return catagory;
 	}
 	public void setCatagory(String catagory) {
 		this.catagory = catagory;
 	}
-	private Double price;
-	private boolean active;
-	private String content;
 	public Long getBookID() {
 		return bookID;
 	}

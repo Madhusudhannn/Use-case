@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
@@ -16,6 +18,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.ResponseEntity;
 
 import com.example.demo.Controller.BooksController;
 import com.example.demo.Entity.Book;
@@ -60,13 +63,12 @@ public class ControllerTest {
     	assertEquals(0, book.size());
     } 
 	@Test
-	public void searchbytest() 
+	public void searchbyauthortest() 
 	{ 
-		Book book=new Book();
-		book.setAuthor("author");
-		when(bookcontroller.searchbooksbyauthor("author")).thenReturn(null);
-		assertThat(bookservice.byauthor("author"));
-		 
+		List<Book> book=new ArrayList<>();
+		when(bookservice.byauthor("author")).thenReturn(book);
+		List<Book> result=bookcontroller.searchbooksbyauthor("");
+		assertThat(result.equals(book));
 	}
 	@Test
 	public void searchbybooidtest()
@@ -84,11 +86,11 @@ public class ControllerTest {
 		book.setCatagory("catagory");
 		book.setPrice(150.00);
 		book.setPublisher("publisher");
-		when(bookcontroller.SearchBooks("catagory", "author", 150.00, "publisher")).thenReturn(null);
+		when(bookcontroller.SearchBooks("catagory", "author", 150.00, "publisher")).thenReturn(null); 
 		assertThat(bookservice.findByCatagoryAndAuthorAndPriceAndPublisher("catagory", "author", 150.00, "publisher"));
-	}
+	} 
 	@Test
-	public void searchbycategorytest()
+	public void searchbycategorytest() 
 	{
 		Book book=new Book();
 		book.setCatagory("category");
@@ -104,6 +106,36 @@ public class ControllerTest {
 		assertThat(bookservice.updateBookService(book));
 		 
 	} 
-  
+	 @Test
+     public void readBookByEmailandBookidTest() throws JsonProcessingException {
+         Map<String, String> map = new HashMap<String, String>();
+         Book book=new Book();
+         map.put("book is generated::",String.valueOf(book.getBookID()));
+         when(bookservice.readContent("madhu@gmail.com", 1L)).thenReturn(map);
+         ResponseEntity entity =bookcontroller.readBooks("siva@gmail.com", String.valueOf(1));
+         assertThat(entity.equals(map));
+
+     }
+	 @Test
+     public void readBookByEmailandPaymentidTest() throws JsonProcessingException {
+         Map<String, String> map = new HashMap<String, String>();
+         Book book=new Book();
+         when(bookservice.findBookByPaymentId("siva@gmail.com", 1L)).thenReturn(map);
+         ResponseEntity entity =bookcontroller.getBookByPaymentid("siva@gmail.com", String.valueOf(1L));
+         assertThat(entity.equals(map));
+
+     }
+	 @Test
+	 public void byprice()
+	 {
+		 Book book=new Book();
+			book.setPrice(179.00);
+			when(bookcontroller.searchbooksby(170.0)).thenReturn(null);
+			assertThat(bookservice.price(179.00));
+
+	 }
+
+
+   
 	
 } 

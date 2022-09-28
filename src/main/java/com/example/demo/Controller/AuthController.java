@@ -73,7 +73,7 @@ public class AuthController {
 												 userDetails.getEmail(), 
 												 roles));
 	}
-
+    String str="";
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -100,6 +100,7 @@ public class AuthController {
 			Role userRole = roleRepository.findByName(ERole.ROLE_READER)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 			roles.add(userRole);
+			str="READER";
 		} else {
 			strRoles.forEach(role -> {
 				switch (role) {
@@ -107,13 +108,14 @@ public class AuthController {
 					Role adminRole = roleRepository.findByName(ERole.ROLE_AUTHOR)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 					roles.add(adminRole);
-
+					str="AUTHOR";
 					break;  
 				
 				default:
 					Role userRole = roleRepository.findByName(ERole.ROLE_READER)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 					roles.add(userRole);
+					str="READER";
 				}
 			});
 		} 
@@ -121,7 +123,7 @@ public class AuthController {
 		user.setRoles(roles);
 		userRepository.save(user); 
  
-		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+		return ResponseEntity.ok(new MessageResponse(str+"  registered successfully!"));
 		
 	}
 }
