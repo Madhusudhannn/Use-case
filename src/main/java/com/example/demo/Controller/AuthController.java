@@ -34,7 +34,7 @@ import com.example.demo.request.SignupRequest;
 
 
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin
 @RestController
 @RequestMapping("/api/auth") 
 public class AuthController {

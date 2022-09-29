@@ -16,7 +16,7 @@ public class Book {
 	private String author;
 	private String title;
 	private String publisher; 
-	private String releaseDate;
+	private String releaseDate; 
 	private String catagory;
 	
 	private Double price;

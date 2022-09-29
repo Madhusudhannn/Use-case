@@ -112,7 +112,7 @@ public class ControllerTest {
          Book book=new Book();
          map.put("book is generated::",String.valueOf(book.getBookID()));
          when(bookservice.readContent("madhu@gmail.com", 1L)).thenReturn(map);
-         ResponseEntity entity =bookcontroller.readBooks("siva@gmail.com", String.valueOf(1));
+         ResponseEntity entity =bookcontroller.readBooks("madhu@gmail.com", String.valueOf(1));
          assertThat(entity.equals(map));
 
      }
@@ -120,8 +120,8 @@ public class ControllerTest {
      public void readBookByEmailandPaymentidTest() throws JsonProcessingException {
          Map<String, String> map = new HashMap<String, String>();
          Book book=new Book();
-         when(bookservice.findBookByPaymentId("siva@gmail.com", 1L)).thenReturn(map);
-         ResponseEntity entity =bookcontroller.getBookByPaymentid("siva@gmail.com", String.valueOf(1L));
+         when(bookservice.findBookByPaymentId("madhu@gmail.com", 1L)).thenReturn(map);
+         ResponseEntity entity =bookcontroller.getBookByPaymentid("madhu@gmail.com", String.valueOf(1L));
          assertThat(entity.equals(map));
 
      }
@@ -134,6 +134,7 @@ public class ControllerTest {
 			assertThat(bookservice.price(179.00));
 
 	 }
+	 
 
 
    

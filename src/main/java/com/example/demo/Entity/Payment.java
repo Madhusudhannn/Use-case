@@ -14,7 +14,7 @@ public class Payment {
 	private Long bookID;
 	private Integer price;
 	private String email;
-	
+	 
 	public Long getReaderId() {
 		return readerId;
 	}

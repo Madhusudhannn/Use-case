@@ -6,11 +6,11 @@ public class SignupRequest {
    
     private String username; 
   
-    
+     
     private String email;
     
     private Set<String> role;
-    
+     
     
     private String password;
   
@@ -21,7 +21,7 @@ public class SignupRequest {
     public void setUsername(String username) {
         this.username = username;
     }
- 
+  
     public String getEmail() {
         return email;
     }

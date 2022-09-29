@@ -34,9 +34,9 @@ public class PaymentController {
 	@PostMapping("/buybook")
 	public String payfornewwbook(@RequestBody Payment payment)
 	{
-		paymentservice.savepayment(payment);
+		paymentservice.savepayment(payment); 
 		return "Payment succesfull";
-	}
+	} 
 	
 	@PreAuthorize("hasRole('ROLE_READER')")
 	@GetMapping("purchasedbook/{email}")
