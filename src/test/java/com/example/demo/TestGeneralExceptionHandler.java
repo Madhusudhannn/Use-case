@@ -23,7 +23,7 @@ public class TestGeneralExceptionHandler {
 		Exception exe=new Exception();
 		ErrorResponse  erroor= generalexception.handleException(exe);
 		ErrorResponse r=new ErrorResponse();
-		r.setErrocode("General"); 
+		r.setErrocode("General");  
 		r.setDescription(exe.getMessage());
 		r.setException(exe);
 		assertNotNull(erroor);

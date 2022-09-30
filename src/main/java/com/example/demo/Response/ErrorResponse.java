@@ -12,7 +12,7 @@ public class ErrorResponse {
 		this.errocode = errocode;
 	}
 	public String getDescription() {
-		return description;
+		return description; 
 	}
 	public void setDescription(String description) {
 		this.description = description;
