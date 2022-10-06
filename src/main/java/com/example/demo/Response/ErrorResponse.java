@@ -4,7 +4,7 @@ public class ErrorResponse {
 	
 	private String errocode;
 	private String description;
-	private Exception exception; 
+	private Exception exception;
 	public String getErrocode() { 
 		return errocode; 
 	}

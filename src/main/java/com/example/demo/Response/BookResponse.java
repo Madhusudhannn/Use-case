@@ -7,7 +7,7 @@ public class BookResponse {
 	private String publisher;
 	private String releaseDate;  
 	private String category; 
-	private Long price;
+	private Long price; 
 	private boolean active;
 	private String content;
 	public Long getBookID() {

@@ -15,7 +15,7 @@ public class LoginTest {
 	@Test
 	public void userNameTest() {
 		login.setUsername("madhu");
-		String name = login.getUsername();
+		String name = login.getUsername(); 
 		assertEquals("madhu", name);
 	}
 
@@ -26,5 +26,5 @@ public class LoginTest {
 		assertEquals("password", pass);
 
 	}
-
+ 
 }

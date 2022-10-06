@@ -40,7 +40,7 @@ public class ControllerTest {
 	private BooksController bookcontroller;
 
 	@Test
-	public void testsavebook() {
+	public void testsavebook() { 
 		Book book = new Book();
 		book.setAuthor("madhu");
 		book.setCatagory("catagory");
@@ -59,7 +59,7 @@ public class ControllerTest {
 		when(bookservice.allbooks()).thenReturn(book);
 		List<Book> result = bookcontroller.allbooks();
 		assertThat(result).isNotNull();
-		assertEquals(0, book.size());
+		assertEquals(0, book.size()); 
 	}
 
 	@Test
@@ -88,7 +88,7 @@ public class ControllerTest {
 		when(bookcontroller.SearchBooks("catagory", "author", 150.00, "publisher")).thenReturn(null);
 		assertThat(bookservice.findByCatagoryAndAuthorAndPriceAndPublisher("catagory", "author", 150.00, "publisher"));
 	}
-
+ 
 	@Test
 	public void searchbycategorytest() {
 		Book book = new Book();
@@ -103,7 +103,7 @@ public class ControllerTest {
 		book.setBookID(2L);
 		when(bookcontroller.updatebook(book, 2L)).thenReturn(book);
 		assertThat(bookservice.updateBookService(book));
-
+ 
 	}
 
 	@Test
@@ -116,7 +116,7 @@ public class ControllerTest {
 		assertThat(entity.equals(map));
 
 	}
-
+ 
 	@Test
 	public void readBookByEmailandPaymentidTest() throws JsonProcessingException {
 		Map<String, String> map = new HashMap<String, String>();
@@ -124,9 +124,9 @@ public class ControllerTest {
 		when(bookservice.findBookByPaymentId("madhu@gmail.com", 1L)).thenReturn(map);
 		ResponseEntity entity = bookcontroller.getBookByPaymentid("madhu@gmail.com", String.valueOf(1L));
 		assertThat(entity.equals(map));
-
+ 
 	}
-
+ 
 	@Test
 	public void byprice() {
 		Book book = new Book();

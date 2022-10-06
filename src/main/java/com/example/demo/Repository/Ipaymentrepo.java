@@ -10,6 +10,7 @@ public interface Ipaymentrepo extends JpaRepository<Payment, Long> {
 	Boolean existsByReaderId (Long readerId);
 	List<Payment> findAllByreaderId(Long readerId);
 	Payment findByPaymentId(Long paymentId);
+	Payment findByEmail(String email);
 	
 	
 

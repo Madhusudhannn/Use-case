@@ -32,7 +32,7 @@ public class BookService {
 	{
 		bookrepo.save(book);
 		return book;
-	}
+	} 
 
 	public Book updateBookService(Book book) {
 		return bookrepo.save(book);
@@ -49,7 +49,7 @@ public class BookService {
 	{
 		List<Book> book=bookrepo.findByPrice(price);
 		return book;
-	}
+	} 
 	public List<Book> allbooks()
 	{ 
 		List<Book> book=bookrepo.findAll();
@@ -66,9 +66,9 @@ public class BookService {
                  publisher);
     }
 
-	public Optional<Book> byid(Long bookid) {
+	public Optional<Book> byid(Long bookid) { 
 		
-		return bookrepo.findById(bookid);
+		return bookrepo.findById(bookid);  
 	}
 
 	public Book readBook(Long bookid) {

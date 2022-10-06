@@ -4,7 +4,7 @@ public class PaymentResponse {
 
 	private Long paymentId;
 	private Long bookID;
-	private Long price;
+	private Long price; 
 	private String paymentDate;
 	public Long getPaymentId() { 
 		return paymentId; 

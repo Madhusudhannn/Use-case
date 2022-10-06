@@ -83,7 +83,7 @@ public class BooksController {
 	{
 		
 		return bookservice.getbycategory(category);
-		
+		 
 		
 		
 	}
@@ -195,7 +195,7 @@ public class BooksController {
 	    @ResponseBody
 	    public ResponseEntity getBookByPaymentid(@PathVariable("email") String email,
 	            @PathVariable("paymentId") String paymentId) throws JsonProcessingException {
-
+ 
 
 
 	       Long payemntid = Long.parseLong(paymentId);

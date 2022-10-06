@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Entity.Payment;
 import com.example.demo.Entity.User;
+import com.example.demo.Repository.Ipaymentrepo;
 import com.example.demo.Services.Paymentservice;
 
 @CrossOrigin
@@ -29,6 +30,8 @@ public class PaymentController {
 	  
 	@Autowired 
 	private Paymentservice paymentservice;
+	@Autowired
+	private Ipaymentrepo paymentrepo;
 	
 	@PreAuthorize("hasRole('ROLE_READER')")
 	@PostMapping("/buybook")
@@ -62,7 +65,19 @@ public class PaymentController {
 	{
 		return paymentservice.bypaymentId(paymentId);
 	}
+	@PreAuthorize("hasRole('ROLE_READER')")
+    @GetMapping("refund/{paymentId}/mail/{email}")
+	public Payment paymentrefund(@PathVariable Long paymentId,@PathVariable String email)
+	{
+		Payment payment=paymentrepo.findByEmail(email);
+		if(payment.getPaymentId().equals(paymentId))
+		{
+			return paymentservice.refundpayment(email);
+		}
+		return payment;
+	}
 	
+	 
 	
 	
 

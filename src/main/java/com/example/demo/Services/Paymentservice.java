@@ -24,7 +24,7 @@ public class Paymentservice {
 	private UserRepository userrepo;
 	
 	public void savepayment(Payment pay)
-	{
+	{ 
 		paymentrepo.save(pay);
 	}
 	public Optional<User> getByemail(String email)
@@ -44,7 +44,7 @@ public class Paymentservice {
 		Map<String, Set<Long>> map=new HashMap<String, Set<Long>>();
 		paymentList.forEach(payment->{
 			bookIdList.add(payment.getBookID());
-		});
+		}); 
 		map.put("bookID", bookIdList);
 		return map;
 	}
@@ -52,8 +52,13 @@ public class Paymentservice {
 		
 		return paymentrepo.findByPaymentId(paymentId);
 	}
+	public Payment refundpayment(String email) {
+		Payment payment=paymentrepo.findByEmail(email);
+		
+		return payment;
+	}
 	
-	
+	 
 	
 
 }

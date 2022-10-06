@@ -1,20 +1,22 @@
-package com.example.demo.Entity;
+package com.example.demo.ResponseTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.example.demo.Entity.Book;
+import com.example.demo.Response.BookResponse;
+
 @SpringBootTest
-public class BookTest {
-	
-	Book book = new Book();
+public class bookresponseTest {
+	BookResponse book = new BookResponse();
 
 	@Test
 	public void bookIdTest() {
-		book.setBookID(1L);
+		book.setBookID(1L); 
 		Long id = book.getBookID();
-		assertEquals(1L, id);
+		assertEquals(1L, id); 
  
 	}
 
@@ -36,17 +38,17 @@ public class BookTest {
 
 	@Test
 	public void catagoryTest() {
-		book.setCatagory("General");
-		String catagory = book.getCatagory();
+		book.setCategory("General");
+		String catagory = book.getCategory();
 		assertEquals("General", catagory);
 
 	}
 
 	@Test
 	public void priceTest() {
-		book.setPrice(125.00);
-		Double price = book.getPrice();
-		assertEquals(125.00, price);
+		book.setPrice(125L);
+		Long price = book.getPrice();
+		assertEquals(125L, price);
 
 	}
 
@@ -96,5 +98,4 @@ public class BookTest {
 		assertEquals("mas", content);
 	}
 
-
-}
+} 
