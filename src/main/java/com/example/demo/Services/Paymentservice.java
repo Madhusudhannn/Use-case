@@ -25,7 +25,7 @@ public class Paymentservice {
 	
 	public void savepayment(Payment pay)
 	{ 
-		paymentrepo.save(pay);
+		paymentrepo.save(pay); 
 	}
 	public Optional<User> getByemail(String email)
 	{
@@ -36,7 +36,7 @@ public class Paymentservice {
 	{
 		Boolean paymentAvailable=paymentrepo.existsByReaderId(readerId);
 		return paymentAvailable;
-	}
+	} 
 	public Map<String, Set<Long>> getBookId(Long readerid)
 	{
 		List<Payment> paymentList=paymentrepo.findAllByreaderId(readerid);

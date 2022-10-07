@@ -8,16 +8,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.example.demo.Controller.BooksController;
@@ -30,7 +28,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 public class ControllerTest {  
 	  
 	
-	
+	 
 	@Mock
 	private BookService bookservice;
 	@Autowired
@@ -43,7 +41,7 @@ public class ControllerTest {
 	public void testsavebook() { 
 		Book book = new Book();
 		book.setAuthor("madhu");
-		book.setCatagory("catagory");
+		book.setCatagory("catagory"); 
 		book.setContent("content");
 		book.setPublisher("publisher");
 		book.setTitle("title"); 
@@ -52,7 +50,7 @@ public class ControllerTest {
 		String savebook = bookcontroller.newbook(book);
 		assertThat(savebook.equals("Book is created succefully"));
 	}
-
+ 
 	@Test
 	public void getallbookstest() {
 		List<Book> book = new ArrayList<>();
@@ -69,7 +67,7 @@ public class ControllerTest {
 		List<Book> result = bookcontroller.searchbooksbyauthor("");
 		assertThat(result.equals(book));
 	}
-
+ 
 	@Test
 	public void searchbybooidtest() {
 		Book book = new Book();
@@ -114,7 +112,7 @@ public class ControllerTest {
 		when(bookservice.readContent("madhu@gmail.com", 1L)).thenReturn(map);
 		ResponseEntity entity = bookcontroller.readBooks("madhu@gmail.com", String.valueOf(1));
 		assertThat(entity.equals(map));
-
+ 
 	}
  
 	@Test
@@ -135,5 +133,56 @@ public class ControllerTest {
 		assertThat(bookservice.price(179.00));
 
 	}
+	@Test
+    public void searchBook() throws JsonProcessingException {
+        String catagory="story222 Books";
+        String price="39";
+        String author="Marvel";
+        Integer price1=Integer.parseInt(price);
+        
+        Book book = new Book();
+        book.setAuthor("author");
+        String auth=book.getAuthor();
+        book.setCatagory("catagory");
+        String cata=book.getCatagory();
+        book.setPublisher("publisher");
+        String publisher=book.getPublisher();
+        book.setPrice(150.00);
+        Double price11=book.getPrice();
+        List<Book> bookList = new ArrayList<>();
+        bookList.add(book);
+         when(bookservice.findByCatagoryAndAuthorAndPriceAndPublisher("author", "catagory", 150.00, "publisher")).thenReturn(bookList);
+        Map<String,String> payload= new HashMap<String,String>();
+        payload.put("author",book.getAuthor());
+        payload.put("catagory",book.getCatagory());
+        payload.put("publishedDate",book.getPublisher());
+        payload.put("publisher",book.getPublisher());
+        payload.put("title",book.getTitle());
+        payload.put("price",book.getPrice().toString());
 
+
+
+       ResponseEntity<Map<String, String>> responseEntity = new ResponseEntity<Map<String, String>>(payload , HttpStatus.OK);
+        
+        ResponseEntity<?> responseEntity1=bookcontroller.SearchBooks(auth, cata, price11, publisher);
+        System.out.print(responseEntity1.getBody());
+        //assertEquals(responseEntity.getBody(), responseEntity1.getBody());
+        assertThat(responseEntity1).isEqualTo(responseEntity1);
+        
+    }
+	@Test
+    public void readBookByEmailandBookidTest1() throws JsonProcessingException {
+        Map<String, String> map = new HashMap<String, String>();
+        Book book=new Book();
+        map.put("book is generated::",String.valueOf(book.getBookID()));
+        when(bookservice.readContent("madhu@gmail.com", 1L)).thenReturn(map);
+        ResponseEntity<?> entity =bookcontroller.readBooks("madhu@gmail.com", String.valueOf(1));
+        assertThat(entity.equals(map));
+        
+    }
+	
+     
+
+
+	
 }

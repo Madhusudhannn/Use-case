@@ -151,7 +151,7 @@ public Book readBook1(Long bookid) {
            return map;
        }
        public Boolean isUserAvailableByEmail(String email) {
-           return userrepo.existsByEmail(email);
+           return userrepo.existsByEmail(email); 
 
       }
        

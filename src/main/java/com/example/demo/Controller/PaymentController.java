@@ -45,7 +45,7 @@ public class PaymentController {
 	@GetMapping("purchasedbook/{email}")
 	@ResponseBody
 	public ResponseEntity getallbooksbymail(@PathVariable("email") String email)
-	{
+	{ 
 		Optional<User> optional=paymentservice.getByemail(email);
 		User user=optional.get();
 		Boolean isReaderpurchased=paymentservice.isPaymentAvailableByReader(user.getId());
@@ -75,8 +75,8 @@ public class PaymentController {
 			return paymentservice.refundpayment(email);
 		}
 		return payment;
-	}
-	
+	} 
+	 
 	 
 	
 	

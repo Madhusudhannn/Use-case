@@ -13,7 +13,7 @@ public class Role {
 	@Column(length = 20)
 	private ERole name;
 
-	public Role() {
+	public Role() { 
 
 	} 
 
@@ -25,7 +25,7 @@ public class Role {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Integer id) { 
 		this.id = id;
 	}
 

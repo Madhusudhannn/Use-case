@@ -17,7 +17,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 
 import com.example.demo.Entity.Book;
+import com.example.demo.Entity.Payment;
 import com.example.demo.Repository.IBookrepo;
+import com.example.demo.Repository.UserRepository;
 import com.example.demo.Services.BookService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -31,6 +33,8 @@ public class bookserviceTest {
 	
 	@InjectMocks
 	BookService bookservice;
+	@Mock
+	UserRepository  userrepo;
 	
 	@Test
 	public void savetest()
@@ -44,6 +48,17 @@ public class bookserviceTest {
 		assertThat(savebook.equals("Book is created succefully"));
 		 
 	} 
+	@Test
+	public void searchbycatpriceauthpublic1() throws JsonProcessingException {
+		Book book = new Book();
+		book.setAuthor("author");
+		book.setCatagory("catagory");
+		book.setPrice(150.00); 
+		book.setPublisher("publisher");
+		when(bookrepo.findByCatagoryAndAuthorAndPriceAndPublisher("catagory", "author", 150.00, "publisher")).thenReturn(null);
+		assertThat(bookservice.findByCatagoryAndAuthorAndPriceAndPublisher("catagory", "author", 150.00, "publisher"));
+	}
+
 	@Test
 	public void updatetest() {
 		book.setBookID(2L);
@@ -70,14 +85,15 @@ public class bookserviceTest {
 		assertEquals(book1, book);
 
 	} 
-//	@Test
-//	public void searchbybooidtest() {
-//		book.setBookID(1L);
-//		Long id=book.getBookID();
-//		Optional<Book> book1=new Book();
-//        when(bookrepo.findById(id)).thenReturn(book1);
-//
-//	}
+	@Test
+	public void searchbybooidtest() {
+		book.setBookID(1L);
+		Long id=book.getBookID();
+		Book book1=new Book();
+        when(bookrepo.findById(id)).thenReturn(null);
+        assertThat(bookservice.byid(id));
+
+	}
 	@Test
 	public void searchbycatpriceauthpublic() throws JsonProcessingException {
 		Book book = new Book();
@@ -87,7 +103,37 @@ public class bookserviceTest {
 		book.setPublisher("publisher");
 		when(bookrepo.findByCatagoryAndAuthorAndPriceAndPublisher("catagory", "author", 150.00, "publisher")).thenReturn(null);
 		assertThat(bookservice.findByCatagoryAndAuthorAndPriceAndPublisher("catagory", "author", 150.00, "publisher"));
-	}
+	} 
 
+//	@Test
+//	public void isUserAvailableTest() {
+//		String str="madhu";
+//		when(userrepo.existsByUsername("madhu")).thenReturn(true);
+//		assertTrue(bookservice.isUserAvailable(str));
+//	}
+	
+	@Test
+	public void getallbookstest1() {
+		List<Book> book = new ArrayList<>();
+		when(bookservice.allbooks()).thenReturn(book);
+		List<Book> result = bookrepo.findAll();
+		assertThat(result).isNotNull();
+		assertEquals(0, book.size()); 
+	}
+	@Test
+	public void searchbyauthortest1() {
+		List<Book> book = new ArrayList<>();
+		when(bookservice.byauthor("author")).thenReturn(book);
+		List<Book> result = bookrepo.findByAuthor("author");
+		assertThat(result.equals(book));
+	}
+//	@Test
+//	public void byid() 
+//	{
+//		List<Book> book=new ArrayList<>();
+//		when(bookservice.readBook(1L)).thenReturn((Book) book);
+//		Optional<Book> list=bookrepo.findById(1L);
+//		assertThat(list.equals(book));
+//	}
 	 
 } 

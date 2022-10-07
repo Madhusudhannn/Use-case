@@ -27,8 +27,8 @@ import com.example.demo.Repository.RoleRepository;
 import com.example.demo.Repository.UserRepository;
 import com.example.demo.Response.JwtResponse;
 import com.example.demo.Response.MessageResponse;
-import com.example.demo.Security.jwt.JwtUtils;
 import com.example.demo.Services.UserDetailsImpl;
+import com.example.demo.jwt.JwtUtils;
 import com.example.demo.request.LoginRequest;
 import com.example.demo.request.SignupRequest;
 
@@ -53,7 +53,7 @@ public class AuthController {
 	@Autowired 
 	JwtUtils jwtUtils;
 
-	@PostMapping("/signin")
+	@PostMapping("/signin") 
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
 		Authentication authentication = authenticationManager.authenticate(
@@ -72,7 +72,7 @@ public class AuthController {
 												 userDetails.getUsername(), 
 												 userDetails.getEmail(), 
 												 roles));
-	}
+	} 
     String str="";
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
@@ -87,7 +87,7 @@ public class AuthController {
 					.badRequest()
 					.body(new MessageResponse("Error: Email is already in use!"));
 		}
-
+ 
 		// Create new user's account
 		User user = new User(signUpRequest.getUsername(), 
 							 signUpRequest.getEmail(),
@@ -125,5 +125,5 @@ public class AuthController {
  
 		return ResponseEntity.ok(new MessageResponse(str+"  registered successfully!"));
 		
-	}
+	} 
 }

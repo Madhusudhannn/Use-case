@@ -31,20 +31,20 @@ public class GeneralExceptionHandler {
 		return  r;  
 	}
 	
-
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<Map<String, String>> handleExceptions(MethodArgumentNotValidException ex)
-	{
-		BindingResult bundingResult=ex.getBindingResult();
-		List<ObjectError> list=bundingResult.getAllErrors();
-		
-		Map<String, String> map=new HashMap<>();
-		for (ObjectError objectError : list) {
-			map.put(((FieldError)objectError).getField(),objectError.getDefaultMessage());
-		}
-		return new ResponseEntity<Map<String,String>>(map,HttpStatus.BAD_REQUEST);
-		
-    }
+ 
+//	@ExceptionHandler(MethodArgumentNotValidException.class)
+//	public ResponseEntity<Map<String, String>> handleExceptions(MethodArgumentNotValidException ex)
+//	{
+//		BindingResult bundingResult=ex.getBindingResult();
+//		List<ObjectError> list=bundingResult.getAllErrors();
+//		
+//		Map<String, String> map=new HashMap<>();
+//		for (ObjectError objectError : list) {
+//			map.put(((FieldError)objectError).getField(),objectError.getDefaultMessage());
+//		}
+//		return new ResponseEntity<Map<String,String>>(map,HttpStatus.BAD_REQUEST);
+//		
+//    }
 
 
 }
